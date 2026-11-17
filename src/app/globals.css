@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #fbfaf8;
+  --surface: #ffffff;
+  --surface-2: #f3f1ed;
+  --fg: #16161a;
+  --muted: #6b6a70;
+  --border: #e6e3dd;
+  --accent: #5b5bd6;
+  --ring: color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c0c0f;
+    --surface: #141418;
+    --surface-2: #1b1b21;
+    --fg: #ececf1;
+    --muted: #9a99a3;
+    --border: #26262d;
+    --accent: #8b8bff;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+::selection {
+  background: var(--ring);
+}
+
+.grain {
+  background-image: radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      color-mix(in oklab, var(--accent) 18%, transparent),
+      transparent 70%
+    );
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    animation: none;
+  }
+}
